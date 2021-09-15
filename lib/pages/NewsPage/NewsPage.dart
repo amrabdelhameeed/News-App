@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsappfinal/pages/NewsPage/ContentScreen.dart';
+import 'package:newsappfinal/pages/NewsPage/NavBarCubit/navbar_cubit.dart';
 
 class NewsPage extends StatefulWidget {
   const NewsPage({ Key? key }) : super(key: key);
@@ -9,39 +11,43 @@ class NewsPage extends StatefulWidget {
 }
 
 class _NewsPageState extends State<NewsPage> {
-  List<String> categories =[
-    "sports",
-      "health",
-      "science"
-  ];
-  int index=0;
+ 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        fixedColor: Colors.teal,
-        onTap: (value){
-          setState(() {
-          index = value;
-          });
+    return BlocProvider(
+      create: (context)=>NavbarCubit(),
+      child: BlocConsumer<NavbarCubit, NavbarState>(
+        listener: (context, state) {
+
         },
-        currentIndex: index,
-        items: [
-          BottomNavigationBarItem(
-            icon:Icon(Icons.sports_soccer_outlined),
-            label: "Sports" 
-          ),
-          BottomNavigationBarItem(
-            icon:Icon(Icons.science_outlined),
-            label: "health" 
-          ),
-          BottomNavigationBarItem(
-            icon:Icon(Icons.health_and_safety_outlined),
-            label: "Science" 
-          ),
-        ],
+        builder: (context, state) {
+          NavbarCubit navbarcubit = NavbarCubit.get(context);
+          return Scaffold(
+        bottomNavigationBar: BottomNavigationBar(
+          fixedColor: Colors.teal,
+          onTap: (value){
+            navbarcubit.changeIndex(value);
+          },
+          currentIndex: navbarcubit.index,
+          items: [
+            BottomNavigationBarItem(
+              icon:Icon(Icons.sports_soccer_outlined),
+              label: "Sports" 
+            ),
+            BottomNavigationBarItem(
+              icon:Icon(Icons.science_outlined),
+              label: "health" 
+            ),
+            BottomNavigationBarItem(
+              icon:Icon(Icons.health_and_safety_outlined),
+              label: "Science" 
+            ),
+          ],
+        ),
+        body: ContentScreen(category:navbarcubit.categories[navbarcubit.index],),
+      );
+        },
       ),
-      body: ContentScreen(category: categories[index],),
     );
   }
 }
