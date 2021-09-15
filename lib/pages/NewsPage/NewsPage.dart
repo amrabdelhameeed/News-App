@@ -35,11 +35,12 @@ class _NewsPageState extends State<NewsPage> {
               label: "Sports" 
             ),
             BottomNavigationBarItem(
-              icon:Icon(Icons.science_outlined),
+              icon:Icon(Icons.health_and_safety_outlined),
+
               label: "health" 
             ),
             BottomNavigationBarItem(
-              icon:Icon(Icons.health_and_safety_outlined),
+              icon:Icon(Icons.science_outlined),
               label: "Science" 
             ),
           ],
