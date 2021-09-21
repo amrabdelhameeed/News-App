@@ -8,7 +8,7 @@ class NavbarCubit extends Cubit<NavbarState> {
   NavbarCubit() : super(NavbarInitial());
   static NavbarCubit get (context)=>BlocProvider.of(context);
    List<String> categories =[
-    "sports",
+      "sports",
       "health",
       "science"
   ];

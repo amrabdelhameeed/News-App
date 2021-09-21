@@ -27,7 +27,7 @@ class CategoryModel {
 						: Source.fromJson(json['source'] as Map<String, dynamic>),
 				author: json['author'] as String?,
 				title: json['title']==null ?"":json['title'] as String?,
-				description: json['description']==null?"No Description":json['description'] as String?,
+				description: json['description']==null?"":json['description'] as String?,
 				url: json['url']==null ?"url":json['url'] as String?,
 				urlToImage: json['urlToImage']==null?"":json['urlToImage'] as String?,
 				publishedAt: json['publishedAt'] == null

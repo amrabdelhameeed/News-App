@@ -30,12 +30,11 @@ class ContentScreen extends StatelessWidget {
     }
     BlocProvider.of<CategoriesCubit>(context).getCategoryData(category);
     return Scaffold(
-      
         appBar: AppBar(
           centerTitle: true,
           title: Text(category),
         ),
-      body: Container(
+        body: Container(
           child: BlocBuilder<CategoriesCubit, CategoriesState>(
             builder: (context, state) {
               return loadedOrNot(state);

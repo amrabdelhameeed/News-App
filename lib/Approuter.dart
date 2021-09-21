@@ -24,7 +24,7 @@ class AppRouter {
       case "/WebViewPage":
         return MaterialPageRoute(builder: (_){
           final article = settings.arguments as CategoryModel;
-          return WebViewPage(url: article.url!,);
+          return WebViewPage(categoryModel: article,);
           }
         );    }
   }
